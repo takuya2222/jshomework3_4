@@ -6,7 +6,7 @@ const todos = [];
 
 const onClickAdd = () => {
   const todo = {
-    todoComment: inputTodo.value,
+    comment: inputTodo.value,
     status: '作業中',
    };
 
@@ -31,7 +31,7 @@ const createTodo = (text) => {
     const todoAction = document.createElement('td');
     
     todoId.textContent = number;
-    todoComment.textContent = todo.todoComment;
+    todoComment.textContent = todo.comment;
     todoRow.appendChild(todoId);
     todoRow.appendChild(todoComment);
     todoRow.appendChild(todoStatus);
@@ -90,7 +90,7 @@ const radioChange = () => {
     return createTodo(filterdone);
   }
 
-  console.log(radio1_1);
-  // console.log(todos);
-
+  console.log(radio1_3.checked);
+  
 };
+
