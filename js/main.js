@@ -6,22 +6,23 @@ const todos = [];
 
 const onClickAdd = () => {
   const todo = {
+    id:todos.length,
     comment: inputTodo.value,
     status: '作業中',
    };
+   
+   todos.push(todo);
+   
+   createTodo(todos);
+   inputTodo.value = '';
+   
+   radioChange();
+};
 
-  todos.push(todo);
-
-  createTodo(inputTodo);
-  inputTodo.value = '';
-  
-  radioChange();
- };
-
-const createTodo = (text) => {
+const createTodo = (selecttodos) => {
   addTaskTarget.textContent = '';
-
-  todos.forEach((todo,number) => {
+  
+  selecttodos.forEach((todo) => {
     const todoRow = document.createElement('tr');
     addTaskTarget.appendChild(todoRow);
     
@@ -30,7 +31,7 @@ const createTodo = (text) => {
     const todoStatus = document.createElement('td');
     const todoAction = document.createElement('td');
     
-    todoId.textContent = number;
+    todoId.textContent = todo.id;
     todoComment.textContent = todo.comment;
     todoRow.appendChild(todoId);
     todoRow.appendChild(todoComment);
@@ -38,9 +39,7 @@ const createTodo = (text) => {
     todoRow.appendChild(todoAction);
     
     todoStatus.appendChild(createStatusButton(todo));
-    todoAction.appendChild(createDeleteButton(todoRow));
-    
-    
+    todoAction.appendChild(createDeleteButton(todo.id));
   });
 };
 
@@ -53,7 +52,7 @@ const createStatusButton = (todo) => {
   statusButton.innerText = todo.status;
   statusButton.addEventListener('click', () => {
     todo.status ==='作業中'?todo.status = '完了':todo.status = '作業中';
-    createTodo(todo);
+    createTodo(todos);
   });
   return statusButton;
 };
@@ -64,33 +63,34 @@ const createDeleteButton = (todoRow) => {
   deleteButton.textContent = '削除';
   deleteButton.addEventListener('click', () => {
     todos.splice(index, 1);
-    createTodo(todoRow);
+    createTodo(todos);
     todos.reduce((Idnum, todo) => (todo.id = Idnum + 1), -1);
+    console.log(todos);
     createTodo(todos);
   });
-  return deleteButton
+  return deleteButton;
 };
 
 const radioChange = () => {
   const radio1_1 = document.getElementById('radio-all-select');
   const radio1_2 = document.getElementById('radio-working-select');
   const radio1_3 = document.getElementById('radio-done-select');
-
+  
   if (radio1_1.checked) {
+    todos.slice();
     return createTodo(todos);
   } else if (radio1_2.checked) {
-    const filterdoing = todos.filter((todo) => {
+    const filterdoing = todos.filter(todo => {
       return todo.status === '作業中';
     });
+    console.log(filterdoing);
     return createTodo(filterdoing);
   } else if (radio1_3.checked) {
-    const filterdone = todos.filter((todo) => {
+    const filterdone = todos.filter(todo => {
       return todo.status === '完了';
     });
+    console.log(filterdone);
     return createTodo(filterdone);
   }
-
-  console.log(radio1_3.checked);
-  
 };
 
