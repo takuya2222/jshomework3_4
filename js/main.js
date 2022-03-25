@@ -65,7 +65,6 @@ const createDeleteButton = (todoRow) => {
     todos.splice(index, 1);
     createTodo(todos);
     todos.reduce((Idnum, todo) => (todo.id = Idnum + 1), -1);
-    console.log(todos);
     createTodo(todos);
   });
   return deleteButton;
@@ -77,19 +76,16 @@ const radioChange = () => {
   const radio1_3 = document.getElementById('radio-done-select');
   
   if (radio1_1.checked) {
-    todos.slice();
     return createTodo(todos);
   } else if (radio1_2.checked) {
     const filterdoing = todos.filter(todo => {
       return todo.status === '作業中';
     });
-    console.log(filterdoing);
     return createTodo(filterdoing);
   } else if (radio1_3.checked) {
     const filterdone = todos.filter(todo => {
       return todo.status === '完了';
     });
-    console.log(filterdone);
     return createTodo(filterdone);
   }
 };
