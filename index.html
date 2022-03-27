@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> JS課題③</title>
+</head>
+<body>
+  <h2>ToDoリスト</h2>
+  <label for=""><input type="radio" name="radio" checked="checked" id="radio-all-select" onchange="radioChange()" value="all">すべて</label>
+  <label for=""><input type="radio" name="radio" id="radio-working-select" onchange="radioChange()" value="working">作業中</label>
+  <label for=""><input type="radio" name="radio" id="radio-done-select" onchange="radioChange()" value="done">完了</label>
+
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>コメント</th>
+        <th>状態</th>
+      </tr>
+    </thead>
+    <tbody id="addTask-target"></tbody>
+  </table>
+
+  <h2>新規タスクの追加</h2>
+  <input id="input-todo" type="text">
+  <button id="add-btn">追加</button>
+  <script src="js/main.js"></script>
+</body>
+</html>
